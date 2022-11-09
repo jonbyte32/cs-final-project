@@ -1,2 +1,1 @@
-# cs-final-project
-CSCI 4300 Final Project
+# CSCI 4300 Final Project
