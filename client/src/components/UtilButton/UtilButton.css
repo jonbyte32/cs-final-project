@@ -1,0 +1,31 @@
+.utility {
+    margin: 0;
+    width: 32px;
+    height: 32px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.utility>img {
+    height: 100%;
+}
+
+.light .utility {
+    transition: background-color 0.1s;
+    background-color: #E7E7E7;
+}
+
+.light .utility:hover {
+    transition: background-color 0.1s;
+    background-color: #c5c5c5;
+}
+
+.dark .utility {
+    transition: background-color 0.1s;
+    background-color: #161616;
+}
+
+.dark .utility:hover {
+    transition: background-color 0.1s;
+    background-color: #070707;
+}

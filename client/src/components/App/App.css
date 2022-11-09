@@ -11,12 +11,64 @@ body {
     flex-direction: column;
 }
 
+.sep {
+    height: 2px;
+    /* margin-left: 10%;
+    margin-right: 10%; */
+    margin-bottom: 30px;
+}
+
+.light .sep {
+    transition: background-color 0.1s;
+    background-color: rgb(228, 228, 228);
+}
+
+.dark .sep {
+    transition: background-color 0.1s;
+    background-color: rgb(87, 87, 87);
+}
+
+#util-bar {
+    margin-left: 10%;
+    margin-right: 10%;
+    height: 32px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#util-right {
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: center;
+    justify-content: space-between;
+}
+
+#util-right>* {
+    margin-right: 10px;
+}
+
+.util-sep {
+    width: 3px;
+    height: 24px;
+}
+
+.light .util-sep {
+    transition: background-color 0.1s;
+    background-color: rgb(208, 208, 208);
+}
+
+.dark .util-sep {
+    transition: background-color 0.1s;
+    background-color: rgb(54, 54, 54);
+}
+
 .light {
-    transition: background-color 0.2s;
+    transition: background-color 0.1s;
     background-color: white;
 }
 
 .dark {
-    transition: background-color 0.2s;
-    background-color: black;
+    transition: background-color 0.1s;
+    background-color: #242424;
 }
