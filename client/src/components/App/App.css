@@ -8,15 +8,15 @@ body {
     width: 100vw;
     height: 100vh;
     display: flex;
-    justify-content: center;
-    align-items: center;
     flex-direction: column;
 }
 
 .light {
+    transition: background-color 0.2s;
     background-color: white;
 }
 
 .dark {
+    transition: background-color 0.2s;
     background-color: black;
 }

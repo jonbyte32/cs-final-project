@@ -1,0 +1,52 @@
+.topbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-left: 10%;
+    padding-right: 10%;
+    height: 100px;
+    user-select: none;
+}
+
+#left {
+    display: flex;
+    align-items: center;
+}
+
+#site-icon {
+    height: 65px;
+}
+
+#site-title {
+    margin: 0;
+    padding-left: 10px;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-size: 2.2rem;
+}
+
+.light #site-title {
+    color: #181818;
+}
+
+.dark #site-title {
+    color: white;
+}
+
+#right {
+    display: flex;
+    align-items: center;
+}
+
+#right>* {
+    padding-right: 10px;
+    height: 45px;
+}
+
+#theme-button {
+    cursor: pointer;
+}
+
+#burger-menu {
+    cursor: pointer;
+    padding-right: 0;
+}

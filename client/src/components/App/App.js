@@ -1,8 +1,8 @@
 import "./App.css";
-import Example from "../Example";
+import Topbar from "../Topbar";
 import { createContext, useState } from "react";
 
-export const ThemeContext = createContext(null);
+export const ThemeContext = createContext("light");
 
 function App() {
 	const [theme, setTheme] = useState(
@@ -16,12 +16,13 @@ function App() {
 	};
 
 	return (
-		<ThemeContext.Provider>
-			<div class={theme} id="main-div">
-				<Example />
-				<button onClick={toggleTheme}>{theme}</button>
-			</div>
-		</ThemeContext.Provider>
+		<>
+			<ThemeContext.Provider value={{ theme, toggleTheme }}>
+				<div className={theme} id="main-div">
+					<Topbar />
+				</div>
+			</ThemeContext.Provider>
+		</>
 	);
 }
 
