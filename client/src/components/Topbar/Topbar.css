@@ -38,6 +38,10 @@
 }
 
 #right>* {
+    position: relative;
+}
+
+#right>*>* {
     margin-right: 10px;
     height: 45px;
 }
@@ -49,4 +53,64 @@
 #burger-menu {
     cursor: pointer;
     margin-right: 0;
+    position: relative;
+}
+
+#burger-menu-dropdown {
+    position: absolute;
+    width: 160px;
+    box-shadow: 0 0 7px rgba(0, 0, 0, 0.5);
+    border-radius: 5px;
+    padding: 12px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    z-index: 10000;
+    display: none;
+    justify-content: center;
+    align-items: flex-end;
+    flex-direction: column;
+    right: 0;
+}
+
+.light #burger-menu-dropdown {
+    background-color: #ffffff;
+    color: #000000;
+}
+
+.dark #burger-menu-dropdown {
+    background-color: #1D1D1D;
+    color: #ffffff;
+}
+
+#burger-menu-dropdown>* {
+    height: 50px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-weight: 700;
+    font-size: 1.2rem;
+    background-color: rgba(0, 0, 0, 0);
+    width: 100%;
+    text-align: end;
+    border-radius: 3px;
+    padding: 3px;
+    cursor: pointer;
+}
+
+#profile-action-1 {
+    color: #3E80E5;
+}
+
+.light #profile-action-1:hover {
+    background-color: #f0f0f0;
+}
+
+.dark #profile-action-1:hover {
+    background-color: #2e2e2e;
+}
+
+.light #profile-action-2:hover {
+    background-color: #f0f0f0;
+}
+
+.dark #profile-action-2:hover {
+    background-color: #2e2e2e;
 }

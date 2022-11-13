@@ -1,0 +1,96 @@
+.bigcard {
+    display: flex;
+    justify-content: space-between;
+    height: 710px;
+    padding: 20px;
+}
+
+.dark .bigcard {
+    color: rgb(230, 230, 230);
+}
+
+.bigcard-left-side {
+    background-color: lightgray;
+    width: 60%;
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+.light .bigcard-left-side {
+    background-color: lightgray;
+}
+
+.dark .bigcard-left-side {
+    background-color: #121212;
+}
+
+.bigcard-placeholder {
+    font-weight: bold;
+    font-size: 3rem;
+}
+
+.light .bigcard-placeholder {
+    color: #a9a9a9;
+}
+
+.dark .bigcard-placeholder {
+    color: #2B2B2B;
+}
+
+.bigcard-card-title {}
+
+.bigcard-bottom-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 20px;
+    margin-right: 20px;
+    margin-left: 20px;
+}
+
+.bigcard-edit-button {
+    width: 50px;
+    height: 50px;
+    cursor: pointer;
+}
+
+.bigcard-delete-button {
+    height: 50px;
+    width: 50px;
+    cursor: pointer;
+}
+
+.bigcard-desc-text {
+    margin-left: 30px;
+    margin-right: 30px;
+    text-overflow: ellipsis;
+    height: fit-content;
+    line-height: 1.8em;
+    overflow: hidden;
+
+}
+
+.bigcard-right-side {
+    /* width: 300px; */
+    width: 40%;
+    border-radius: 10px;
+    margin-left: 5%;
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.7);
+    text-align: center;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+}
+
+.light .bigcard-right-side {
+    background-color: #FFFFFF;
+}
+
+.dark .bigcard-right-side {
+    background-color: #1D1D1D;
+}

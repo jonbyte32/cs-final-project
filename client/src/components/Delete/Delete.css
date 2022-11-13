@@ -1,0 +1,75 @@
+.dark .deletePage{
+    
+        margin-left: auto;
+        margin-right: auto;
+        width: 336px;
+        height: 156px;
+        border-radius: 4px;
+      background-color: #505050;
+      position: relative;
+      top: 20px;
+    
+}
+
+.deletePage{
+    margin-left: auto;
+    margin-right: auto;
+    width: 336px;
+    height: 156px;
+    border-radius: 4px;
+  background-color: #e7e7e7;
+  position: relative;
+  top: 20px;
+}
+
+.deleteTitle{
+    margin-top: 25px;
+text-align: center;
+color: #505050;
+}
+.dark .deleteTitle{
+text-align: center;
+color: white;
+}
+
+.dark .deleteExit{
+    background-color: #505050;
+}
+.deleteExit{
+    left: 60px;
+    top: 90px;
+    background-color: #e7e7e7;
+    border-color: #e7e7e7;
+    border-radius: 4px;
+    padding-top: 4px;
+    padding-bottom: 4px;
+    padding-left: 25px;
+    padding-right: 25px;
+    border-style: none;
+    position:absolute;
+}
+.dark .deleteExit{
+    border-color: #505050;
+}
+.deleteSubmit{
+    background-color: red;
+    border-color: red;
+    border-radius: 4px;
+    border-style: none; 
+    color: white;
+    right: 60px;
+    top: 90px;
+    position: absolute;
+    padding-top: 4px;
+    padding-bottom: 4px;
+    padding-left: 25px;
+    padding-right: 25px;
+   
+}
+.deleteSubmit:hover{
+    transform: translateY(2px);
+}
+.deleteExit:hover{
+    transform: translateY(2px);
+}
+

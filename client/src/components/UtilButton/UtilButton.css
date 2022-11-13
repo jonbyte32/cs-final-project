@@ -4,6 +4,12 @@
     height: 32px;
     border-radius: 4px;
     cursor: pointer;
+    user-select: none;
+    position: relative;
+}
+
+.utility:hover .utility .tooltip {
+    display: flex;
 }
 
 .utility>img {
