@@ -5,6 +5,8 @@ import { ModalContext } from "../App";
 import TestModal from "../TestModal";
 import Login from "../Login";
 import SignUp from "../SignUp";
+import Create from "../Create";
+import Edit from "../Edit";
 import Delete from "../Delete";
 
 const MODAL_ROOT = document.getElementById("modal-root");
@@ -12,6 +14,8 @@ const modals = {
 	test: <TestModal style={{ "z-index": "100" }} />,
 	login: <Login />,
 	signup: <SignUp />,
+	create: <Create />,
+	edit: <Edit />,
 	delete: <Delete />,
 };
 

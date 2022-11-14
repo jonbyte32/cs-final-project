@@ -1,7 +1,10 @@
 import "./BigCard.css";
-import React from "react";
+import React, { useContext } from "react";
+import { ModalContext } from "../App";
 
 export default function BigCard() {
+	const { openModal } = useContext(ModalContext);
+
 	return (
 		<div className="bigcard">
 			<div className="bigcard-left-side">
@@ -27,7 +30,7 @@ export default function BigCard() {
 						alt="edit button"
 						src="../images/card-edit.png"
 						onClick={() => {
-							console.log("edit clicked");
+							openModal("edit");
 						}}
 					></img>
 					<img
@@ -35,7 +38,7 @@ export default function BigCard() {
 						alt="delete button"
 						src="../images/card-delete.png"
 						onClick={() => {
-							console.log("delete clicked");
+							openModal("delete");
 						}}
 					></img>
 				</div>

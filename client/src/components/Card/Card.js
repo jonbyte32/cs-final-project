@@ -1,8 +1,9 @@
-import React from "react";
+import { React, useContext } from "react";
 import "./Card.css";
 import { ModalContext } from "../App";
 
 export default function Card() {
+	const { openModal } = useContext(ModalContext);
 	return (
 		<div className="card-container">
 			<div className="card">
@@ -30,7 +31,7 @@ export default function Card() {
 							alt="edit button"
 							src="../images/card-edit.png"
 							onClick={() => {
-								console.log("edit clicked");
+								openModal("edit");
 							}}
 						></img>
 						<p
@@ -60,7 +61,7 @@ export default function Card() {
 							src="../images/card-delete.png"
 							alt="delete icon"
 							onClick={() => {
-								console.log("delete clicked");
+								openModal("delete");
 							}}
 						></img>
 					</div>

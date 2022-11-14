@@ -42,7 +42,16 @@ function App() {
 						<Topbar />
 						<span className="sep" />
 						<div id="util-bar">
-							<div id="util-left"></div>
+							<div id="util-left">
+								<UtilButton
+									id="card-create"
+									onClick={() => {
+										openModal("create");
+									}}
+									image={"./images/card-create.png"}
+									alt="create"
+								/>
+							</div>
 							<div id="util-right">
 								<UtilButton
 									id="grid-button"
@@ -96,7 +105,7 @@ function App() {
 								<UtilButton
 									id="right-button"
 									onClick={() => {
-										openModal("login");
+										console.log("go right");
 									}}
 									image={
 										"./images/" + theme + "/right-arrow.png"
@@ -106,7 +115,7 @@ function App() {
 								<UtilButton
 									id="left-button"
 									onClick={() => {
-										openModal("signup");
+										console.log("go left");
 									}}
 									image={
 										"./images/" + theme + "/left-arrow.png"
