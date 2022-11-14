@@ -58,7 +58,11 @@
 }
 
 .light .delete-cancel {
-    color: black;
+    color: rgb(135, 135, 135);
+}
+
+.light .delete-cancel:hover {
+    color: rgb(32, 32, 32);
 }
 
 .dark .delete-cancel {
