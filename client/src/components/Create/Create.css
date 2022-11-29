@@ -112,7 +112,7 @@
 }
 
 .create-submit {
-    margin-bottom: 20px;
+    margin-bottom: 10px;
     margin-top: 10px;
     background-color: #3E80E5;
     border-style: none;
@@ -129,4 +129,16 @@
 
 .create-submit:hover {
     background-color: #3369bb;
+}
+
+#create-error {
+    color: red;
+    font-size: 0.7rem;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-weight: bold;
+
+    margin: 0;
+    margin-bottom: 10px;
+    text-align: center;
+    width: 100%;
 }

@@ -1,12 +1,12 @@
 import { React, useContext } from "react";
 import "./Topbar.css";
 
-import { ThemeContext, ModalContext } from "../App";
-import Modal from "../Modal";
+import { ThemeContext, ModalContext, AuthContext } from "../App";
 
 export default function Topbar() {
 	const { theme, toggleTheme } = useContext(ThemeContext);
 	const { openModal } = useContext(ModalContext);
+	const { user, logoutUser } = useContext(AuthContext);
 
 	return (
 		<div className="topbar">
@@ -22,7 +22,12 @@ export default function Topbar() {
 				<div>
 					<img
 						id="theme-button"
-						onClick={toggleTheme}
+						onClick={() => {
+							document.getElementById(
+								"burger-menu-dropdown"
+							).style.display = "none";
+							toggleTheme();
+						}}
 						src={"../images/" + theme + "/theme-toggle.png"}
 						alt="theme toggle button"
 					/>
@@ -41,14 +46,15 @@ export default function Topbar() {
 						}}
 					/>
 					<div id="burger-menu-dropdown">
-						{/* <div id="menu-profile"></div> */}
 						<div
 							id="profile-action-1"
 							onClick={() => {
-								document.getElementById(
-									"burger-menu-dropdown"
-								).style.display = "none";
-								openModal("signup");
+								if (!user.active) {
+									document.getElementById(
+										"burger-menu-dropdown"
+									).style.display = "none";
+									openModal("signup");
+								}
 							}}
 						>
 							SIGN UP
@@ -59,7 +65,11 @@ export default function Topbar() {
 								document.getElementById(
 									"burger-menu-dropdown"
 								).style.display = "none";
-								openModal("login");
+								if (!user.active) {
+									openModal("login");
+								} else {
+									logoutUser();
+								}
 							}}
 						>
 							LOGIN

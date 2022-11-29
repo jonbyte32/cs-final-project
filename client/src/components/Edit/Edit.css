@@ -130,3 +130,15 @@
 .edit-submit:hover {
     background-color: #3369bb;
 }
+
+#edit-error {
+    color: red;
+    font-size: 0.7rem;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-weight: bold;
+
+    margin: 0;
+    margin-bottom: 10px;
+    text-align: center;
+    width: 100%;
+}

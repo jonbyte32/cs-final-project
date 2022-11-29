@@ -1,4 +1,4 @@
-.signup-page {
+#signup-page {
     margin-left: auto;
     margin-right: auto;
     width: 336px;
@@ -14,11 +14,11 @@
     user-select: none;
 }
 
-.light .signup-page {
+.light #signup-page {
     background-color: #ffffff;
 }
 
-.dark .signup-page {
+.dark #signup-page {
     background-color: #242424;
 }
 
@@ -133,7 +133,7 @@
     transition: background-color 0.1s;
     background-color: #3E80E5;
     position: absolute;
-    top: 180px;
+    top: 170px;
     left: 84px;
     width: 50%;
     padding-top: 10px;
@@ -150,4 +150,16 @@
 .signup-submit:hover {
     transition: background-color 0.1s;
     background-color: #3369bb;
+}
+
+#signup-error {
+    color: red;
+    /* background-color: red; */
+    font-size: 0.7rem;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-weight: bold;
+
+    position: absolute;
+    top: 218px;
+    width: 100%;
 }

@@ -1,8 +1,7 @@
-import { React, useContext } from "react";
+import { useContext } from "react";
 import ReactDOM from "react-dom";
 import { ModalContext } from "../App";
 
-import TestModal from "../TestModal";
 import Login from "../Login";
 import SignUp from "../SignUp";
 import Create from "../Create";
@@ -11,20 +10,29 @@ import Delete from "../Delete";
 
 const MODAL_ROOT = document.getElementById("modal-root");
 const modals = {
-	test: <TestModal style={{ "z-index": "100" }} />,
-	login: <Login />,
-	signup: <SignUp />,
-	create: <Create />,
-	edit: <Edit />,
-	delete: <Delete />,
+	login: (props) => {
+		return <Login {...props} />;
+	},
+	signup: (props) => {
+		return <SignUp {...props} />;
+	},
+	create: (props) => {
+		return <Create {...props} />;
+	},
+	edit: (props) => {
+		return <Edit {...props} />;
+	},
+	delete: (props) => {
+		return <Delete {...props} />;
+	},
 };
 
 export default function Modal() {
 	const { modal } = useContext(ModalContext);
-	if (!modal) {
+	if (modal.id === null) {
 		MODAL_ROOT.style.display = "none";
 		return null;
 	}
 	MODAL_ROOT.style.display = "flex";
-	return ReactDOM.createPortal(<>{modals[modal]}</>, MODAL_ROOT);
+	return ReactDOM.createPortal(modals[modal.id](modal.props), MODAL_ROOT);
 }

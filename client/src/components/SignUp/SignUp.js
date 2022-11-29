@@ -1,7 +1,9 @@
 import React, { useContext } from "react";
 import "./SignUp.css";
 
-import { ModalContext } from "../App";
+import { ModalContext, AuthContext } from "../App";
+
+const sleep = (s) => new Promise((res) => setTimeout(res, s * 1000));
 
 async function signup(data) {
 	return fetch("http://localhost:8080/signup", {
@@ -15,11 +17,20 @@ async function signup(data) {
 		.catch((err) => console.log(err));
 }
 
+const error = (msg) => {
+	const e = document.getElementById("signup-error");
+	e.innerText = msg;
+	sleep(1).then(() => {
+		e.innerText = "";
+	});
+};
+
 export default function SignUp() {
 	const { closeModal } = useContext(ModalContext);
+	const { loginUser } = useContext(AuthContext);
 
 	return (
-		<div className="signup-page">
+		<div id="signup-page">
 			<h1 className="signup-title">Sign Up</h1>
 			<button
 				className="signup-exit"
@@ -54,22 +65,37 @@ export default function SignUp() {
 			<button
 				className="signup-submit"
 				onClick={() => {
-					console.log("signup submit");
+					const username = document
+						.getElementById("signup-username")
+						.value.trim();
+					const password = document
+						.getElementById("signup-password")
+						.value.trim();
+					if (username.length === 0) {
+						error("username required");
+						return;
+					}
+					if (password.length === 0) {
+						error("password required");
+						return;
+					}
 					signup({
-						username:
-							document.getElementById("signup-username").value,
-						password:
-							document.getElementById("signup-password").value,
-					}).then((data) => {
-						if (data) {
-							// close modal and update ui to allow perms related to role
+						username: username,
+						password: password,
+					}).then((res) => {
+						if (res.ok) {
+							loginUser(res.username, res.role, res.token);
 							closeModal();
+						} else {
+							// show modal error message
+							error(res.err);
 						}
 					});
 				}}
 			>
 				SUBMIT
 			</button>
+			<p id="signup-error"></p>
 		</div>
 	);
 }

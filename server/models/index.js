@@ -14,6 +14,15 @@ db.user = mongoose.model(
 	})
 );
 
-db.ROLES = ["user", "admin"];
+db.card = mongoose.model(
+	"Card",
+	new mongoose.Schema({
+		title: String,
+		description: String,
+		image_url: String,
+		username: String,
+		index: String,
+	})
+);
 
 module.exports = db;

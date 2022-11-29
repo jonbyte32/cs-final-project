@@ -95,22 +95,46 @@
     cursor: pointer;
 }
 
-#profile-action-1 {
+/* #profile-action-1 {
     color: #3E80E5;
-}
+} */
 
-.light #profile-action-1:hover {
+/* .light #profile-action-1:hover {
     background-color: #f0f0f0;
 }
 
 .dark #profile-action-1:hover {
     background-color: #2e2e2e;
-}
+} */
 
-.light #profile-action-2:hover {
+/* .light #profile-action-2:hover {
     background-color: #f0f0f0;
 }
 
 .dark #profile-action-2:hover {
     background-color: #2e2e2e;
+} */
+
+
+
+
+
+.out #profile-action-1 {
+    color: #3E80E5;
+}
+
+.in #profile-action-1 {
+    cursor: default;
+}
+
+.in .light #profile-action-1 {
+    color: black;
+}
+
+.in .dark #profile-action-1 {
+    color: white;
+}
+
+.in #profile-action-2 {
+    color: red;
 }

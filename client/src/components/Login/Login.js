@@ -4,6 +4,8 @@ import "./Login.css";
 import { AuthContext } from "../App";
 import { ModalContext } from "../App";
 
+const sleep = (s) => new Promise((res) => setTimeout(res, s * 1000));
+
 async function login(data) {
 	return fetch("http://localhost:8080/login", {
 		method: "POST",
@@ -15,6 +17,14 @@ async function login(data) {
 		.then((data) => data.json())
 		.catch((err) => console.log(err));
 }
+
+const error = (msg) => {
+	const e = document.getElementById("login-error");
+	e.innerText = msg;
+	sleep(1).then(() => {
+		e.innerText = "";
+	});
+};
 
 export default function LoginPage() {
 	const { closeModal } = useContext(ModalContext);
@@ -56,23 +66,38 @@ export default function LoginPage() {
 			<button
 				className="login-submit"
 				onClick={() => {
-					const username =
-						document.getElementById("login-username").value;
-					const password =
-						document.getElementById("login-password").value;
+					const username = document
+						.getElementById("login-username")
+						.value.trim();
+					const password = document
+						.getElementById("login-password")
+						.value.trim();
+					if (username.length === 0) {
+						error("username required");
+						return;
+					}
+					if (password.length === 0) {
+						error("password required");
+						return;
+					}
 					login({
 						username: username,
 						password: password,
-					}).then((data) => {
-						if (data.ok) {
-							loginUser(username, data.role);
+						stored: false,
+					}).then((res) => {
+						if (res.ok) {
+							console.log(res);
+							loginUser(username, res.role, res.token);
 							closeModal();
+						} else {
+							error(res.err);
 						}
 					});
 				}}
 			>
 				SUBMIT
 			</button>
+			<p id="login-error"></p>
 		</div>
 	);
 }

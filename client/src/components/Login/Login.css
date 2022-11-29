@@ -151,3 +151,14 @@
     transition: background-color 0.1s;
     background-color: #3369bb;
 }
+
+#login-error {
+    color: red;
+    font-size: 0.7rem;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-weight: bold;
+
+    position: absolute;
+    top: 222px;
+    width: 100%;
+}

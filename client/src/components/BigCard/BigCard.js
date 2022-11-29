@@ -1,44 +1,50 @@
 import "./BigCard.css";
 import React, { useContext } from "react";
-import { ModalContext } from "../App";
+import { ModalContext, AuthContext, CardContext } from "../App";
 
 export default function BigCard() {
 	const { openModal } = useContext(ModalContext);
-
+	const { getCard } = useContext(CardContext);
+	const card = getCard();
+	const owns = card && card.username === localStorage.getItem("USER-NAME");
 	return (
 		<div className="bigcard">
 			<div className="bigcard-left-side">
-				<p className="bigcard-placeholder">IMAGE</p>
+				<img id="bigcard-image" src={""} alt={""} />
 			</div>
 			<div className="bigcard-right-side">
-				<h2 className="bigcard-card-title">Card Title</h2>
-				<p className="bigcard-desc-text">
-					Lorem Ipsum is simply dummy text of the printing and
-					typesetting industry. Lorem Ipsum has been the industry's
-					standard dummy text ever since the 1500s, when an unknown
-					printer took a galley of type and scrambled it to make a
-					type specimen book. It has survived not only five centuries,
-					but also the leap into electronic typesetting, remaining
-					essentially unchanged. It was popularised in the 1960s with
-					the release of Letraset sheets containing Lorem Ipsum
-					passages, and more recently with desktop publishing software
-					like Aldus PageMaker including versions of Lorem Ipsum.
-				</p>
+				<h2 id="bigcard-card-title">{""}</h2>
+				<p id="bigcard-desc-text">{""}</p>
 				<div className="bigcard-bottom-row">
 					<img
-						className="bigcard-edit-button"
+						id="bigcard-edit-button"
 						alt="edit button"
 						src="../images/card-edit.png"
 						onClick={() => {
-							openModal("edit");
+							if (owns) {
+								document.getElementById(
+									"burger-menu-dropdown"
+								).style.display = "none";
+								openModal("edit", {
+									title: card.title,
+									desc: card.description,
+									image: card.image_url,
+								});
+							}
 						}}
 					></img>
+					<p id="bigcard-author">{""}</p>
 					<img
-						className="bigcard-delete-button"
+						id="bigcard-delete-button"
 						alt="delete button"
 						src="../images/card-delete.png"
 						onClick={() => {
-							openModal("delete");
+							if (owns) {
+								document.getElementById(
+									"burger-menu-dropdown"
+								).style.display = "none";
+								openModal("delete");
+							}
 						}}
 					></img>
 				</div>

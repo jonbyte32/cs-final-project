@@ -35,3 +35,8 @@
     transition: background-color 0.1s;
     background-color: #070707;
 }
+
+#card-create {
+    opacity: 0%;
+    cursor: default;
+}
