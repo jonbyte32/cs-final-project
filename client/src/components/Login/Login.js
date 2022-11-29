@@ -1,10 +1,24 @@
 import React, { useContext } from "react";
 import "./Login.css";
 
+import { AuthContext } from "../App";
 import { ModalContext } from "../App";
+
+async function login(data) {
+	return fetch("http://localhost:8080/login", {
+		method: "POST",
+		headers: {
+			"Content-Type": "application/json",
+		},
+		body: JSON.stringify(data),
+	})
+		.then((data) => data.json())
+		.catch((err) => console.log(err));
+}
 
 export default function LoginPage() {
 	const { closeModal } = useContext(ModalContext);
+	const { user, loginUser } = useContext(AuthContext);
 
 	return (
 		<div className="login-page">
@@ -42,7 +56,19 @@ export default function LoginPage() {
 			<button
 				className="login-submit"
 				onClick={() => {
-					closeModal();
+					const username =
+						document.getElementById("login-username").value;
+					const password =
+						document.getElementById("login-password").value;
+					login({
+						username: username,
+						password: password,
+					}).then((data) => {
+						if (data.ok) {
+							loginUser(username, data.role);
+							closeModal();
+						}
+					});
 				}}
 			>
 				SUBMIT

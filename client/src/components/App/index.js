@@ -1,1 +1,1 @@
-export { default, ThemeContext, ModalContext } from "./App";
+export { default, ThemeContext, ModalContext, AuthContext } from "./App";

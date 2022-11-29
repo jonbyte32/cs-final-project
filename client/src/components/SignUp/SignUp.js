@@ -3,6 +3,18 @@ import "./SignUp.css";
 
 import { ModalContext } from "../App";
 
+async function signup(data) {
+	return fetch("http://localhost:8080/signup", {
+		method: "POST",
+		headers: {
+			"Content-Type": "application/json",
+		},
+		body: JSON.stringify(data),
+	})
+		.then((data) => data.json())
+		.catch((err) => console.log(err));
+}
+
 export default function SignUp() {
 	const { closeModal } = useContext(ModalContext);
 
@@ -42,7 +54,18 @@ export default function SignUp() {
 			<button
 				className="signup-submit"
 				onClick={() => {
-					closeModal();
+					console.log("signup submit");
+					signup({
+						username:
+							document.getElementById("signup-username").value,
+						password:
+							document.getElementById("signup-password").value,
+					}).then((data) => {
+						if (data) {
+							// close modal and update ui to allow perms related to role
+							closeModal();
+						}
+					});
 				}}
 			>
 				SUBMIT
