@@ -53,7 +53,7 @@ export default function LoginPage() {
 					alt=""
 				/>
 				<input
-					type="text"
+					type="password"
 					id="login-password"
 					placeholder="password..."
 				/>

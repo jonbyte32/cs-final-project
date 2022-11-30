@@ -52,7 +52,7 @@ export default function SignUp() {
 					alt=""
 				/>
 				<input
-					type="text"
+					type="password"
 					id="signup-password"
 					placeholder="password..."
 				/>
