@@ -38,7 +38,7 @@ export default function SignUp() {
 					closeModal();
 				}}
 			>
-				<img src="./images/close-x.png" alt="" />
+				<img src="/images/close-x.png" alt="" />
 			</button>
 			<form className="signup-LoginInfo">
 				<input
@@ -47,7 +47,7 @@ export default function SignUp() {
 					placeholder="username..."
 				/>
 				<img
-					src="./images/username-icon.png"
+					src="/images/username-icon.png"
 					className="signup-userpic"
 					alt=""
 				/>
@@ -57,7 +57,7 @@ export default function SignUp() {
 					placeholder="password..."
 				/>
 				<img
-					src="./images/password-icon.png"
+					src="/images/password-icon.png"
 					className="signup-passpic"
 					alt=""
 				/>

@@ -58,7 +58,7 @@ db.mongoose
 
 // set port, listen for requests
 const PORT = 8080;
-app.listen(PORT, () => {
+app.listen(PORT, async () => {
 	db.user
 		.findOne({
 			username: "admin",
@@ -80,11 +80,11 @@ app.listen(PORT, () => {
 	console.log(`Server is running on port ${PORT}.`);
 });
 
-app.get("/", (req, res) => {
+app.get("/", async (req, res) => {
 	send(res, {});
 });
 
-app.post("/login", (req, res) => {
+app.post("/login", async (req, res) => {
 	const body = req.body;
 	const token = body.stored ? body.password : hash(body.password);
 	console.log(`login : ${body.username} : ${token}`);
@@ -127,7 +127,7 @@ app.post("/login", (req, res) => {
 		});
 });
 
-app.post("/signup", (req, res) => {
+app.post("/signup", async (req, res) => {
 	const body = req.body;
 	db.user
 		.findOne({
@@ -173,13 +173,13 @@ app.post("/signup", (req, res) => {
 		});
 });
 
-app.get("/cards", (req, res) => {
+app.get("/cards", async (req, res) => {
 	db.card.find({}, (err, cards) => {
 		send(res, cards);
 	});
 });
 
-app.post("/card/create", (req, res) => {
+app.post("/card/create", async (req, res) => {
 	const body = req.body;
 	// const index = await db.card.countDocuments().then((i) => i);
 	console.log(body.index);
@@ -197,7 +197,7 @@ app.post("/card/create", (req, res) => {
 		);
 });
 
-app.post("/card/edit", (req, res) => {
+app.post("/card/edit", async (req, res) => {
 	const body = req.body;
 	db.card
 		.updateOne(
@@ -225,7 +225,7 @@ app.post("/card/edit", (req, res) => {
 		});
 });
 
-app.post("/card/delete", (req, res) => {
+app.post("/card/delete", async (req, res) => {
 	const body = req.body;
 	db.card.find({}, (err, cards) => {
 		db.card

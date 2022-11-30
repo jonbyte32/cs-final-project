@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import "./Create.css";
 import { ModalContext, CardContext } from "../App";
+import { useNavigate } from "react-router-dom";
 
 const sleep = (s) => new Promise((res) => setTimeout(res, s * 1000));
 
@@ -36,13 +37,14 @@ const error = (msg) => {
 export default function Create() {
 	const { closeModal } = useContext(ModalContext);
 	const { cards, getCards, setCard } = useContext(CardContext);
+	const nav = useNavigate();
 	return (
 		<div className="create-modal">
 			<div className="create-top">
 				<div className="create-title">Create Card</div>
 				<img
 					className="create-close"
-					src="./images/close-x.png"
+					src="/images/close-x.png"
 					alt="close modal"
 					onClick={closeModal}
 				/>
@@ -98,62 +100,69 @@ export default function Create() {
 						}).then((res) => {
 							if (res.ok) {
 								getCards().then(() => {
-									setCard(0);
-
 									console.log(cards.list.length);
-									if (cards.list.length === 0) {
-										document.getElementById(
-											"detailed-view"
-										).style.display = "block";
+									setCard(cards.list.length - 1);
 
-										const detailed =
-											document.getElementById(
-												"detailed-view"
-											);
-										const grid =
-											document.getElementById(
-												"grid-view"
-											);
-
-										detailed.style.display =
-											grid.style.display === "none"
-												? "block"
-												: "none";
-										grid.style.display =
-											grid.style.display === "grid"
-												? "grid"
-												: "none";
+									if (
+										window.location.href.match(
+											/.*(\/card\/.*$)/
+										)
+									) {
+										nav("/card/" + cards.list.length);
 									}
+									// if (cards.list.length === 0) {
+									// 	document.getElementById(
+									// 		"detailed-view"
+									// 	).style.display = "block";
 
-									document.getElementById(
-										"bigcard-card-title"
-									).innerText = title;
-									document.getElementById(
-										"bigcard-desc-text"
-									).innerText = desc;
-									document.getElementById(
-										"bigcard-image"
-									).src = image;
-									document.getElementById(
-										"bigcard-image"
-									).alt = desc;
-									document.getElementById(
-										"bigcard-author"
-									).innerText =
-										"Uploaded By: " +
-										localStorage.getItem("USER-NAME");
+									// 	const detailed =
+									// 		document.getElementById(
+									// 			"detailed-view"
+									// 		);
+									// 	const grid =
+									// 		document.getElementById(
+									// 			"grid-view"
+									// 		);
 
-									const edit = document.getElementById(
-										"bigcard-edit-button"
-									);
-									const del = document.getElementById(
-										"bigcard-delete-button"
-									);
+									// 	detailed.style.display =
+									// 		grid.style.display === "none"
+									// 			? "block"
+									// 			: "none";
+									// 	grid.style.display =
+									// 		grid.style.display === "grid"
+									// 			? "grid"
+									// 			: "none";
+									// }
 
-									edit.style.opacity = "100%";
-									edit.style.cursor = "pointer";
-									del.style.opacity = "100%";
-									del.style.cursor = "pointer";
+									// document.getElementById(
+									// 	"bigcard-card-title"
+									// ).innerText = title;
+									// document.getElementById(
+									// 	"bigcard-desc-text"
+									// ).innerText = desc;
+									// document.getElementById(
+									// 	"bigcard-image"
+									// ).src = image;
+									// document.getElementById(
+									// 	"bigcard-image"
+									// ).alt = desc;
+									// document.getElementById(
+									// 	"bigcard-author"
+									// ).innerText =
+									// 	"Uploaded By: " +
+									// 	localStorage.getItem("USER-NAME");
+
+									// const edit = document.getElementById(
+									// 	"bigcard-edit-button"
+									// );
+									// const del = document.getElementById(
+									// 	"bigcard-delete-button"
+									// );
+
+									// edit.style.opacity = "100%";
+									// edit.style.cursor = "pointer";
+									// del.style.opacity = "100%";
+									// del.style.cursor = "pointer";
 
 									closeModal();
 								});

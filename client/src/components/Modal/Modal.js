@@ -1,6 +1,7 @@
 import { useContext } from "react";
 import ReactDOM from "react-dom";
 import { ModalContext } from "../App";
+import { Routes, Route } from "react-router-dom";
 
 import Login from "../Login";
 import SignUp from "../SignUp";
@@ -29,10 +30,21 @@ const modals = {
 
 export default function Modal() {
 	const { modal } = useContext(ModalContext);
-	if (modal.id === null) {
-		MODAL_ROOT.style.display = "none";
-		return null;
+	// console.log(modal);
+	// if (modal.id === null) {
+	// 	MODAL_ROOT.style.display = "none";
+	// 	return null;
+	// }
+	// MODAL_ROOT.style.display = "flex";
+	// return ReactDOM.createPortal(
+	// 	<Routes>modals[modal.id](modal.props)</Routes>,
+	// 	MODAL_ROOT
+	// );
+
+	if (modal.id) {
+		MODAL_ROOT.style.display = "flex";
+		return ReactDOM.createPortal(modals[modal.id](modal.props), MODAL_ROOT);
 	}
-	MODAL_ROOT.style.display = "flex";
-	return ReactDOM.createPortal(modals[modal.id](modal.props), MODAL_ROOT);
+	MODAL_ROOT.style.display = "none";
+	return null;
 }

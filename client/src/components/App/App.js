@@ -1,10 +1,12 @@
 import "./App.css";
+import { Routes, Route, Link, Navigate, useNavigate } from "react-router-dom";
 import Topbar from "../Topbar";
 import UtilButton from "../UtilButton";
 import { createContext, useState } from "react";
 import Modal from "../Modal";
 import Card from "../Card";
 import BigCard from "../BigCard/BigCard";
+import NotFound from "../NotFound";
 
 export const ThemeContext = createContext(null);
 export const ModalContext = createContext(null);
@@ -72,22 +74,22 @@ function App() {
 		document.getElementById("profile-action-1").innerText = username;
 		document.getElementById("profile-action-2").innerText = "LOGOUT";
 
-		const edit = document.getElementById("bigcard-edit-button");
-		const del = document.getElementById("bigcard-delete-button");
-		const owns =
-			cards.list.length > 0
-				? username === cards.list[cards.position].username
-				: false;
+		// const edit = document.getElementById("bigcard-edit-button");
+		// const del = document.getElementById("bigcard-delete-button");
+		// const owns =
+		// 	cards.list.length > 0
+		// 		? username === cards.list[cards.position].username
+		// 		: false;
 
-		edit.style.opacity = owns ? "100%" : "0%";
-		edit.style.cursor = owns ? "pointer" : "default";
-		del.style.opacity = owns ? "100%" : "0%";
-		del.style.cursor = owns ? "pointer" : "default";
+		// edit.style.opacity = owns ? "100%" : "0%";
+		// edit.style.cursor = owns ? "pointer" : "default";
+		// del.style.opacity = owns ? "100%" : "0%";
+		// del.style.cursor = owns ? "pointer" : "default";
 
-		const create = document.getElementById("card-create");
+		// const create = document.getElementById("card-create");
 
-		create.style.opacity = "100%";
-		create.style.cursor = "pointer";
+		// create.style.opacity = "100%";
+		// create.style.cursor = "pointer";
 	};
 
 	const logoutUser = () => {
@@ -102,18 +104,18 @@ function App() {
 		document.getElementById("profile-action-1").innerText = "SIGN UP";
 		document.getElementById("profile-action-2").innerText = "LOGIN";
 
-		const edit = document.getElementById("bigcard-edit-button");
-		const del = document.getElementById("bigcard-delete-button");
+		// const edit = document.getElementById("bigcard-edit-button");
+		// const del = document.getElementById("bigcard-delete-button");
 
-		edit.style.opacity = "0%";
-		edit.style.cursor = "default";
-		del.style.opacity = "0%";
-		del.style.cursor = "default";
+		// edit.style.opacity = "0%";
+		// edit.style.cursor = "default";
+		// del.style.opacity = "0%";
+		// del.style.cursor = "default";
 
-		const create = document.getElementById("card-create");
+		// const create = document.getElementById("card-create");
 
-		create.style.opacity = "0%";
-		create.style.cursor = "default";
+		// create.style.opacity = "0%";
+		// create.style.cursor = "default";
 	};
 
 	if (user.active === false && localStorage.getItem("USER-TOKEN")) {
@@ -155,8 +157,10 @@ function App() {
 		});
 	};
 
-	const getCard = (index) => {
-		if (index) {
+	const getCard = (index, is_num) => {
+		if (is_num) {
+			return cards.list[index];
+		} else if (index) {
 			let object = null;
 			let position = null;
 			for (let i = 0; i < cards.list.length; i++) {
@@ -167,62 +171,76 @@ function App() {
 					break;
 				}
 			}
-			return [object, position];
+			return object !== null ? [object, position] : null;
 		} else {
-			return cards.list[cards.position];
+			// console.log(cards);
+			return cards.list.length > 0 ? cards.list[cards.position] : null;
 		}
 	};
 
 	const setCard = (position) => {
 		position = position || 0;
-		setCards({
+		return setCards({
 			list: cards.list,
 			position: position,
 		});
-		const card = cards.list[position];
-		console.log(cards.list);
+		// const card = cards.list[position];
+		// console.log(cards.list);
 
-		if (cards.list.length > 0) {
-			document.getElementById("bigcard-card-title").innerText =
-				card.title;
-			document.getElementById("bigcard-desc-text").innerText =
-				card.description;
-			document.getElementById("bigcard-image").src = card.image_url;
-			document.getElementById("bigcard-image").alt = card.description;
-			document.getElementById("bigcard-author").innerText =
-				"Uploaded By: " + card.username;
+		// if (cards.list.length > 0) {
+		// 	document.getElementById("bigcard-card-title").innerText =
+		// 		card.title;
+		// 	document.getElementById("bigcard-desc-text").innerText =
+		// 		card.description;
+		// 	document.getElementById("bigcard-image").src = card.image_url;
+		// 	document.getElementById("bigcard-image").alt = card.description;
+		// 	document.getElementById("bigcard-author").innerText =
+		// 		"Uploaded By: " + card.username;
 
-			const edit = document.getElementById("bigcard-edit-button");
-			const del = document.getElementById("bigcard-delete-button");
-			const owns = user.username === card.username;
+		// 	const edit = document.getElementById("bigcard-edit-button");
+		// 	const del = document.getElementById("bigcard-delete-button");
+		// 	const owns = user.username === card.username;
 
-			edit.style.opacity = owns ? "100%" : "0%";
-			edit.style.cursor = owns ? "pointer" : "default";
-			del.style.opacity = owns ? "100%" : "0%";
-			del.style.cursor = owns ? "pointer" : "default";
-		} else {
-			document.getElementById("bigcard-card-title").innerText = "";
-			document.getElementById("bigcard-desc-text").innerText = "";
-			document.getElementById("bigcard-image").src = "";
-			document.getElementById("bigcard-image").alt = "";
-			document.getElementById("bigcard-author").innerText = "";
+		// 	edit.style.opacity = owns ? "100%" : "0%";
+		// 	edit.style.cursor = owns ? "pointer" : "default";
+		// 	del.style.opacity = owns ? "100%" : "0%";
+		// 	del.style.cursor = owns ? "pointer" : "default";
+		// } else {
+		// 	document.getElementById("bigcard-card-title").innerText = "";
+		// 	document.getElementById("bigcard-desc-text").innerText = "";
+		// 	document.getElementById("bigcard-image").src = "";
+		// 	document.getElementById("bigcard-image").alt = "";
+		// 	document.getElementById("bigcard-author").innerText = "";
 
-			const edit = document.getElementById("bigcard-edit-button");
-			const del = document.getElementById("bigcard-delete-button");
+		// 	const edit = document.getElementById("bigcard-edit-button");
+		// 	const del = document.getElementById("bigcard-delete-button");
 
-			edit.style.opacity = "0%";
-			edit.style.cursor = "default";
-			del.style.opacity = "0%";
-			del.style.cursor = "default";
-		}
+		// 	edit.style.opacity = "0%";
+		// 	edit.style.cursor = "default";
+		// 	del.style.opacity = "0%";
+		// 	del.style.cursor = "default";
+		// }
 	};
 
 	const cardRight = () => {
-		setCard(Math.abs(cards.position + 1) % cards.list.length);
+		// setCard(Math.abs(cards.position + 1) % cards.list.length);
+		// console.log(cards.position);
+		let pos = cards.position + 1;
+		if (pos === cards.list.length) {
+			setCard(0);
+		} else {
+			setCard(pos);
+		}
 	};
 
 	const cardLeft = () => {
-		setCard(Math.abs(cards.position - 1) % cards.list.length);
+		// setCard(Math.abs(cards.position - 1) % cards.list.length);
+		let pos = cards.position - 1;
+		if (pos < 0) {
+			setCard(cards.list.length - 1);
+		} else {
+			setCard(pos);
+		}
 	};
 
 	getCards();
@@ -268,7 +286,7 @@ function App() {
 													openModal("create");
 												}
 											}}
-											image={"./images/card-create.png"}
+											image={"/images/card-create.png"}
 											alt="create"
 											style={{
 												opacity: user.active
@@ -284,9 +302,9 @@ function App() {
 										<UtilButton
 											id="grid-button"
 											onClick={() => {
-												document.getElementById(
-													"detailed-view"
-												).style.display = "none";
+												// document.getElementById(
+												// 	"detailed-view"
+												// ).style.display = "none";
 												document.getElementById(
 													"util-sep"
 												).style.display = "none";
@@ -296,30 +314,31 @@ function App() {
 												document.getElementById(
 													"left-button"
 												).style.display = "none";
-												document.getElementById(
-													"grid-view"
-												).style.display = "grid";
+												// document.getElementById(
+												// 	"grid-view"
+												// ).style.display = "grid";
 												document.getElementById(
 													"burger-menu-dropdown"
 												).style.display = "none";
 											}}
 											image={
-												"./images/" +
+												"/images/" +
 												theme +
 												"/grid-view.png"
 											}
 											alt="grid view"
+											to="/"
 										/>
 										<UtilButton
 											id="detailed-button"
 											onClick={() => {
 												setCard(0);
-												document.getElementById(
-													"grid-view"
-												).style.display = "none";
-												document.getElementById(
-													"detailed-view"
-												).style.display = "block";
+												// document.getElementById(
+												// 	"grid-view"
+												// ).style.display = "none";
+												// document.getElementById(
+												// 	"detailed-view"
+												// ).style.display = "block";
 												document.getElementById(
 													"util-sep"
 												).style.display = "block";
@@ -334,13 +353,15 @@ function App() {
 												).style.display = "none";
 											}}
 											image={
-												"./images/" +
+												"/images/" +
 												theme +
 												"/detail-view.png"
 											}
 											alt="detailed view"
+											to="/card/0"
 										/>
 										<span id="util-sep" />
+
 										<UtilButton
 											id="right-button"
 											onClick={() => {
@@ -350,12 +371,50 @@ function App() {
 												cardRight();
 											}}
 											image={
-												"./images/" +
+												"/images/" +
 												theme +
 												"/right-arrow.png"
 											}
 											alt="go right"
+											// to={
+											// 	"/card/" +
+											// 	((cards.position + 1) %
+											// 		cards.list.length)
+											// }
+											// to={
+											// 	"/card/" +
+											// 		((parseInt(
+											// 			window.location.href.match(
+											// 				/.*\/card\/(.+)$/
+											// 			)[1]
+											// 		) +
+											// 			1) %
+											// 			cards.list.length) || ""
+											// }
+
+											to={((url) => {
+												const matches =
+													url.match(
+														/.*\/card\/(.+)$/
+													);
+												if (matches) {
+													const id = parseInt(
+														matches[1]
+													);
+													const pos = id + 1;
+													if (
+														pos ===
+														cards.list.length
+													) {
+														return "/card/0";
+													} else {
+														return "/card/" + pos;
+													}
+												}
+												return "";
+											})(window.location.href)}
 										/>
+
 										<UtilButton
 											id="left-button"
 											onClick={() => {
@@ -365,18 +424,98 @@ function App() {
 												cardLeft();
 											}}
 											image={
-												"./images/" +
+												"/images/" +
 												theme +
 												"/left-arrow.png"
 											}
 											alt="go left"
+											to={((url) => {
+												const matches =
+													url.match(
+														/.*\/card\/(.+)$/
+													);
+												if (matches) {
+													const id = parseInt(
+														matches[1]
+													);
+													const pos = id - 1;
+													console.log(pos);
+													console.log();
+													if (pos < 0) {
+														return (
+															"/card/" +
+															(cards.list.length -
+																1)
+														);
+													} else {
+														return "/card/" + pos;
+													}
+												}
+												return "";
+											})(window.location.href)}
 										/>
 
 										<Modal />
 									</div>
 								</div>
 								<div id="view-area">
-									<div id="grid-view">
+									<Routes>
+										<Route
+											path="/"
+											element={
+												<div id="grid-view">
+													{cards.list.map(
+														(card, index) => {
+															return (
+																<Card
+																	title={
+																		card.title
+																	}
+																	desc={
+																		card.description
+																	}
+																	image={
+																		card.image_url
+																	}
+																	username={
+																		card.username
+																	}
+																	position={
+																		index
+																	}
+																	index={
+																		card.index
+																	}
+																	key={index}
+																/>
+															);
+														}
+													)}
+												</div>
+											}
+										/>
+										<Route
+											path="/card/*"
+											element={
+												<div id="detailed-view">
+													<BigCard />
+												</div>
+											}
+										/>
+										<Route
+											path="/card/:id"
+											element={
+												<div id="detailed-view">
+													<BigCard />
+												</div>
+											}
+										/>
+										<Route
+											path="*"
+											element={<NotFound />}
+										/>
+									</Routes>
+									{/* <div id="grid-view">
 										{cards.list.map((card, index) => {
 											return (
 												<Card
@@ -390,10 +529,10 @@ function App() {
 												/>
 											);
 										})}
-									</div>
-									<div id="detailed-view">
+									</div> */}
+									{/* <div id="detailed-view">
 										<BigCard />
-									</div>
+									</div> */}
 								</div>
 							</div>
 						</CardContext.Provider>

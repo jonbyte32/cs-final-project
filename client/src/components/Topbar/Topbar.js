@@ -13,7 +13,7 @@ export default function Topbar() {
 			<div id="left">
 				<img
 					id="site-icon"
-					src={"../images/" + theme + "/site-icon.png"}
+					src={"/images/" + theme + "/site-icon.png"}
 					alt="site icon"
 				/>
 				<h2 id="site-title">Gallery</h2>
@@ -28,14 +28,14 @@ export default function Topbar() {
 							).style.display = "none";
 							toggleTheme();
 						}}
-						src={"../images/" + theme + "/theme-toggle.png"}
+						src={"/images/" + theme + "/theme-toggle.png"}
 						alt="theme toggle button"
 					/>
 				</div>
 				<div>
 					<img
 						id="burger-menu"
-						src={"../images/" + theme + "/hamburger-menu.png"}
+						src={"/images/" + theme + "/hamburger-menu.png"}
 						alt="hamburger menu button"
 						onClick={() => {
 							const e = document.getElementById(

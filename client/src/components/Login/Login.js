@@ -39,7 +39,7 @@ export default function LoginPage() {
 					closeModal();
 				}}
 			>
-				<img src="./images/close-x.png" alt="" />
+				<img src="/images/close-x.png" alt="" />
 			</button>
 			<form className="login-LoginInfo">
 				<input
@@ -48,7 +48,7 @@ export default function LoginPage() {
 					placeholder="username..."
 				/>
 				<img
-					src="./images/username-icon.png"
+					src="/images/username-icon.png"
 					className="login-userpic"
 					alt=""
 				/>
@@ -58,7 +58,7 @@ export default function LoginPage() {
 					placeholder="password..."
 				/>
 				<img
-					src="./images/password-icon.png"
+					src="/images/password-icon.png"
 					className="login-passpic"
 					alt=""
 				/>

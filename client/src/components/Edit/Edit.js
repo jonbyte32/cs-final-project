@@ -33,7 +33,7 @@ export default function Edit(props) {
 				<div className="edit-title">Edit Card</div>
 				<img
 					className="edit-close"
-					src="./images/close-x.png"
+					src="/images/close-x.png"
 					alt="close modal"
 					onClick={closeModal}
 				/>
@@ -94,24 +94,24 @@ export default function Edit(props) {
 							if (res.ok) {
 								getCards();
 
-								const card = getCard();
-								console.log(card);
+								// const card = getCard();
+								// console.log(card);
 
-								document.getElementById(
-									"bigcard-card-title"
-								).innerText = title;
-								document.getElementById(
-									"bigcard-desc-text"
-								).innerText = desc;
-								document.getElementById("bigcard-image").src =
-									image;
-								document.getElementById("bigcard-image").alt =
-									desc;
-								document.getElementById(
-									"bigcard-author"
-								).innerText =
-									"Uploaded By: " +
-									localStorage.getItem("USER-NAME");
+								// document.getElementById(
+								// 	"bigcard-card-title"
+								// ).innerText = title;
+								// document.getElementById(
+								// 	"bigcard-desc-text"
+								// ).innerText = desc;
+								// document.getElementById("bigcard-image").src =
+								// 	image;
+								// document.getElementById("bigcard-image").alt =
+								// 	desc;
+								// document.getElementById(
+								// 	"bigcard-author"
+								// ).innerText =
+								// 	"Uploaded By: " +
+								// 	localStorage.getItem("USER-NAME");
 
 								closeModal();
 							} else {

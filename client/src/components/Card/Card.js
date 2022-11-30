@@ -1,11 +1,12 @@
 import { React, useContext } from "react";
 import "./Card.css";
 import { ModalContext, AuthContext, CardContext } from "../App";
+import { Link, Navigate } from "react-router-dom";
 
 export default function Card(props) {
 	const { openModal } = useContext(ModalContext);
 	const { user } = useContext(AuthContext);
-	const { getCard, setCard } = useContext(CardContext);
+	const { cards, getCard, setCard } = useContext(CardContext);
 	const owns = props.username === user.username;
 	const e = (
 		<div className="card-container" id={"card-" + props.index}>
@@ -24,7 +25,7 @@ export default function Card(props) {
 						<img
 							className="card-edit"
 							alt="edit button"
-							src="../images/card-edit.png"
+							src="/images/card-edit.png"
 							onClick={(e) => {
 								if (user.active && owns) {
 									document.getElementById(
@@ -49,41 +50,43 @@ export default function Card(props) {
 								cursor: owns ? "pointer" : "default",
 							}}
 						></img>
-						<p
-							className="card-link"
-							onClick={(e) => {
-								document.getElementById(
-									"grid-view"
-								).style.display = "none";
-								document.getElementById(
-									"detailed-view"
-								).style.display = "block";
-								document.getElementById(
-									"util-sep"
-								).style.display = "block";
-								document.getElementById(
-									"right-button"
-								).style.display = "block";
-								document.getElementById(
-									"left-button"
-								).style.display = "block";
-								document.getElementById(
-									"burger-menu-dropdown"
-								).style.display = "none";
+						<Link to={"/card/" + props.position}>
+							<p
+								className="card-link"
+								onClick={(e) => {
+									// document.getElementById(
+									// 	"grid-view"
+									// ).style.display = "none";
+									// document.getElementById(
+									// 	"detailed-view"
+									// ).style.display = "block";
+									document.getElementById(
+										"util-sep"
+									).style.display = "block";
+									document.getElementById(
+										"right-button"
+									).style.display = "block";
+									document.getElementById(
+										"left-button"
+									).style.display = "block";
+									document.getElementById(
+										"burger-menu-dropdown"
+									).style.display = "none";
 
-								const index =
-									e.target.parentElement.parentElement.parentElement.parentElement.id.match(
-										/^card-(.+)$/
-									)[1];
-								const [card, position] = getCard(index);
-								setCard(position);
-							}}
-						>
-							Read More
-						</p>
+									const index =
+										e.target.parentElement.parentElement.parentElement.parentElement.parentElement.id.match(
+											/^card-(.+)$/
+										)[1];
+									const [card, position] = getCard(index);
+									setCard(position);
+								}}
+							>
+								Read More
+							</p>
+						</Link>
 						<img
 							className="card-delete"
-							src="../images/card-delete.png"
+							src="/images/card-delete.png"
 							alt="delete icon"
 							onClick={(e) => {
 								if (user.active && owns) {
